@@ -67,4 +67,14 @@ public class District {
         }
         return highest;
     }
+
+    public List<Incident> getIncidentWithValGreaterThan(double val) {
+        List<Incident> valArr = new ArrayList<>();
+        for (Incident incident: this.incidents) {
+            if (incident.getValue() > val) {
+                valArr.add(incident);
+            }
+        }
+        return valArr;
+    }
 }
