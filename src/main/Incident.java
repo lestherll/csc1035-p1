@@ -6,6 +6,8 @@ public class Incident {
     private int year;
     private double value;
 
+    public Incident() {}
+
     public Incident(String postCode, int month, int year, double value) {
         this.postCode = postCode;
         this.month = month;
