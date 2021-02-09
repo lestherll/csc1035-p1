@@ -17,7 +17,7 @@ public class District {
 
     public District(String name, Incident[] incidents) {
         this.name = name;
-        this.incidents = Arrays.asList(incidents);
+        this.incidents.addAll(Arrays.asList(incidents));
     }
 
     public String getName() {
@@ -44,21 +44,25 @@ public class District {
         this.incidents.add(incident);
     }
 
-    public Double getAverageVal() {
-        double total = 0;
-        for (Incident incident : this.incidents) {
-            total += incident.getValue();
+    // Helper method for fetching all values stolen from incidents
+    private double[] getAllIncidentVal() {
+        double[] values = new double[this.incidents.size()];
+        for (int i=0; i < this.incidents.size(); i++) {
+            values[i] = this.incidents.get(i).getValue();
         }
+        return values;
+    }
+
+    public double getAverageVal() {
+        double total = Arrays.stream(this.getAllIncidentVal()).sum();
         return total/this.incidents.size();
     }
 
-    public Double getHighestVal() {
+    public double getHighestVal() {
         double highest = 0;
-        double curr;
-        for (Incident incident : this.incidents) {
-            curr = incident.getValue();
-            if (highest < curr) {
-                highest = curr;
+        for (double val: this.getAllIncidentVal()) {
+            if (val > highest) {
+                highest = val;
             }
         }
         return highest;
