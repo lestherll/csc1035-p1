@@ -51,4 +51,16 @@ public class District {
         }
         return total/this.incidents.size();
     }
+
+    public Double getHighestVal() {
+        double highest = 0;
+        double curr;
+        for (Incident incident : this.incidents) {
+            curr = incident.getValue();
+            if (highest < curr) {
+                highest = curr;
+            }
+        }
+        return highest;
+    }
 }
