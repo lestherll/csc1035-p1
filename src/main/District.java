@@ -43,4 +43,12 @@ public class District {
     public void addIncident (Incident incident) {
         this.incidents.add(incident);
     }
+
+    public Double getAverageVal() {
+        double total = 0;
+        for (Incident incident : this.incidents) {
+            total += incident.getValue();
+        }
+        return total/this.incidents.size();
+    }
 }
