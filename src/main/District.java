@@ -39,4 +39,8 @@ public class District {
                 ", incidents=" + incidents +
                 '}';
     }
+
+    public void addIncident (Incident incident) {
+        this.incidents.add(incident);
+    }
 }
