@@ -13,4 +13,45 @@ public class Incident {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Incident{" +
+                "postCode='" + postCode + '\'' +
+                ", month=" + month +
+                ", year=" + year +
+                ", value=" + value +
+                '}';
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public double getValue() {
+        return this.value;
+    }
 }
