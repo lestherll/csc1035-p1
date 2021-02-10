@@ -11,13 +11,12 @@ public class District {
     }
 
     public District(String name, List<Incident> incidents) {
-        this.name = name;
-        this.incidents = incidents;
+        this(name);
+        this.incidents.addAll(incidents);
     }
 
     public District(String name, Incident[] incidents) {
-        this.name = name;
-        this.incidents.addAll(Arrays.asList(incidents));
+        this(name, Arrays.asList(incidents));
     }
 
     public String getName() {
