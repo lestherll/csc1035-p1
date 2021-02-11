@@ -61,15 +61,27 @@ public class District {
     }
 
     public double getAverageVal() {
+        if (this.incidents.size() == 0) {
+            return 0;
+        }
+
         double total = Arrays.stream(this.getAllIncidentVal()).sum();
         return total/this.incidents.size();
     }
 
-    public double getHighestVal() {
-        double highest = 0;
-        for (double val: this.getAllIncidentVal()) {
-            if (val > highest) {
-                highest = val;
+    public Incident getHighestVal() {
+        if (this.incidents.size() == 0) {
+            return null;
+        }
+
+        if (this.incidents.size() ==1 ) {
+            return this.incidents.get(0);
+        }
+
+        Incident highest = this.incidents.get(0);
+        for (int i=1; i < this.incidents.size(); i++) {
+            if (this.incidents.get(i).getValue() > highest.getValue()) {
+                highest = this.incidents.get(i);
             }
         }
         return highest;
