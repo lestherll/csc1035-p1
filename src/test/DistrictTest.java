@@ -73,5 +73,26 @@ class DistrictTest {
 
     @Test
     void testGetIncidentWithValGreaterThan() {
+        District district = new District("Newcastle");
+
+        assertEquals(new ArrayList<>(), district.getIncidentWithValGreaterThan(20));
+
+        Incident incident = new Incident("NE2", 1, 2021, 500.5);
+        Incident incident1 = new Incident("NE3", 2, 2021, 756);
+        Incident incident2 = new Incident("NE5", 1, 2021, 400.0);
+        Incident incident3 = new Incident("NE20", 4, 2020, 420.69);
+
+        List<Incident> incidents = new ArrayList<>(){{
+            add(incident);
+            add(incident1);
+            add(incident2);
+            add(incident3);
+        }};
+        district.addIncident(incidents);
+
+        assertEquals(4, district.getIncidentWithValGreaterThan(0).size());
+        assertEquals(3, district.getIncidentWithValGreaterThan(401).size());
+        assertEquals(0, district.getIncidentWithValGreaterThan(1000).size());
+
     }
 }
