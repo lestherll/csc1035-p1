@@ -59,7 +59,16 @@ class DistrictTest {
 
     @Test
     void testGetHighestVal() {
+        District district = new District("Newcastle");
 
+        assertNull(district.getHighestVal());
+
+        Incident incident = new Incident("NE1", 12, 2020, 250.0);
+        Incident incident1 = new Incident("NE2", 1, 2021, 1200.0);
+        Incident incident2 = new Incident("NE3", 2, 2021, 900.0);
+        district.addIncident(new Incident[] {incident, incident1, incident2});
+
+        assertEquals(incident1, district.getHighestVal());
     }
 
     @Test
