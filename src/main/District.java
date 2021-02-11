@@ -43,6 +43,14 @@ public class District {
         this.incidents.add(incident);
     }
 
+    public void addIncident (List<Incident> incidents) {
+        this.incidents.addAll(incidents);
+    }
+
+    public void addIncident (Incident[] incidents) {
+        this.addIncident(Arrays.asList(incidents));
+    }
+
     // Helper method for fetching all values stolen from incidents
     private double[] getAllIncidentVal() {
         double[] values = new double[this.incidents.size()];
