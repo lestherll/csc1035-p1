@@ -12,6 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class DistrictTest {
 
     @Test
+    void testDistrictAndSetName() {
+        District district = new District("Durham");
+        assertEquals("Durham", district.getName());
+
+        district.setName("City of Durham");
+        assertNotEquals("Durham", district.getName());
+        assertEquals("City of Durham", district.getName());
+    }
+
+    @Test
     void testGetIncidents() {
         Incident incident = new Incident("NE1", 12, 2020, 250.0);
         Incident incident1 = new Incident("NE2", 1, 2021, 100.0);
