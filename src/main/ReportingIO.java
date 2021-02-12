@@ -30,6 +30,12 @@ public class ReportingIO {
         return this.scanner.nextLine();
     }
 
+    public void enterDistrict() {
+        String name = this.enterStr("Enter District Name");
+        District district = new District(name);
+        this.reporting.addDistrict(district);
+    }
+
     public void presentReport() {
         System.out.println(reporting.maxAverageValInDistAt(2001));
         System.out.println(reporting.maxIncidentVal());
