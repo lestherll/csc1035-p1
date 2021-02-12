@@ -36,6 +36,14 @@ public class ReportingIO {
         this.reporting.addDistrict(district);
     }
 
+    public void enterIncident() {
+        String postCode = this.enterStr("Enter Postcode");
+        int month = this.enterNum(1, 12, "Enter month number");
+        int year = this.enterNum(1950, 2021, "Enter year");
+        double value = this.enterNum(0, (int) Double.POSITIVE_INFINITY, "Enter value stolen");
+        Incident incident = new Incident(postCode, month, year, value);
+    }
+
     public void presentReport() {
         System.out.println(reporting.maxAverageValInDistAt(2001));
         System.out.println(reporting.maxIncidentVal());
