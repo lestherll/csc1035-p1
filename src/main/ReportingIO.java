@@ -7,6 +7,28 @@ public class ReportingIO {
     private final Scanner scanner = new Scanner(System.in);
     private final Reporting reporting = new Reporting();
 
+    public int enterNum(int min, int max, String message) {
+
+        int number = min;
+        do {
+            if ((number > max) || (number < min)) {
+                System.out.println("Outside of range");
+            }
+            System.out.printf("%s: ", message);
+            while (!this.scanner.hasNextInt()) {
+                String input = this.scanner.next();
+                System.out.printf("%s invalid input, try again: ", input);
+            }
+            number = this.scanner.nextInt();
+        } while ((number > max) || (number < min));
+
+        return number;
+    }
+
+    public String enterStr(String message) {
+        System.out.printf("%s: ", message);
+        return this.scanner.nextLine();
+    }
 
 
     public void main() {
