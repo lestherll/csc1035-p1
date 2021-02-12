@@ -56,6 +56,14 @@ public class Reporting {
         return highest;
     }
 
+    public List<Incident> getIncidentWithValGreaterThan(double amount) {
+        List<Incident> incidentList = new ArrayList<>();
+
+        for (District district: this.districts) {
+            incidentList.addAll(district.getIncidentWithValGreaterThan(amount));
+        }
+        return incidentList;
+    }
 }
 
 
