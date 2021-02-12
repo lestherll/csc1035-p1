@@ -30,6 +30,11 @@ public class ReportingIO {
         return this.scanner.nextLine();
     }
 
+    public void presentReport() {
+        System.out.println(reporting.maxAverageValInDistAt(2001));
+        System.out.println(reporting.maxIncidentVal());
+        System.out.println(reporting.getIncidentWithValGreaterThan(100));
+    }
 
     public void main() {
         int choice;
