@@ -42,6 +42,20 @@ public class Reporting {
         return highest;
     }
 
+    public Incident maxIncidentVal() {
+        if (this.districts.size() == 0) {
+            return null;
+        }
+
+        Incident highest = this.districts.get(0).getHighestVal();
+        for (int i = 1; i < this.districts.size(); i++) {
+            if (this.districts.get(i).getHighestVal().getValue() > highest.getValue()) {
+                highest = districts.get(i).getHighestVal();
+            }
+        }
+        return highest;
+    }
+
 }
 
 
