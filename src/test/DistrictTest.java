@@ -55,16 +55,16 @@ class DistrictTest {
     void testGetAverageVal() {
         District district = new District("Newcastle");
 
-        assertEquals(0, district.getAverageVal());
+        assertEquals(0, district.getAverageValAt(2020));
 
-        Incident incident = new Incident("NE1", 12, 2020, 250.0);
+        Incident incident = new Incident("NE1", 12, 2021, 250.0);
         Incident incident1 = new Incident("NE2", 1, 2021, 100.0);
         district.addIncident(incident);
         district.addIncident(incident1);
 
         double expected = (incident.getValue() + incident1.getValue())/2;
 
-        assertEquals(expected, district.getAverageVal());
+        assertEquals(expected, district.getAverageValAt(2021));
     }
 
     @Test

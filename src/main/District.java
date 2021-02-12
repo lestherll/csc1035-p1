@@ -63,22 +63,18 @@ public class District {
         this.addIncident(Arrays.asList(incidents));
     }
 
-    // Helper method for fetching all values stolen from incidents
-    private double[] getAllIncidentVal() {
-        double[] values = new double[this.incidents.size()];
-        for (int i=0; i < this.incidents.size(); i++) {
-            values[i] = this.incidents.get(i).getValue();
-        }
-        return values;
-    }
-
-    public double getAverageVal() {
+    public double getAverageValAt(int year) {
         if (this.incidents.size() == 0) {
             return 0;
         }
 
-        double total = Arrays.stream(this.getAllIncidentVal()).sum();
-        return total/this.incidents.size();
+        double total = 0;
+        for (Incident incident: this.incidents) {
+            if (incident.getYear() == year) {
+                total += incident.getValue();
+            }
+        }
+        return total/incidents.size();
     }
 
     public Incident getHighestVal() {
