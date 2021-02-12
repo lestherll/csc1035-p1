@@ -32,6 +32,15 @@ public class Reporting {
         this.districts.addAll(Arrays.asList(districts));
     }
 
+    public District maxAverageValInDistAt(int year) {
+        District highest = this.districts.get(0);
+        for (int i=1; i < this.districts.size(); i++) {
+            if (this.districts.get(i).getAverageValAt(year) > highest.getAverageValAt(year)) {
+                highest = this.districts.get(i);
+            }
+        }
+        return highest;
+    }
 
 }
 
