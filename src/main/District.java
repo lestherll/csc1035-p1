@@ -39,6 +39,14 @@ public class District {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof District) {
+            return ((District) other).name.equals(this.name);
+        }
+        return false;
+    }
+
     public void setIncidents(List<Incident> incidents) {
         this.incidents = incidents;
     }
