@@ -43,6 +43,11 @@ public class Reporting {
                 highest = this.districts.get(i);
             }
         }
+
+        if (highest.getAverageValAt(year) == 0) {
+            return null;
+        }
+
         return highest;
     }
 
@@ -53,6 +58,10 @@ public class Reporting {
 
         Incident highest = this.districts.get(0).getHighestVal();
         for (int i = 1; i < this.districts.size(); i++) {
+            if (highest == null) {
+                continue;
+            }
+
             if (this.districts.get(i).getHighestVal().getValue() > highest.getValue()) {
                 highest = districts.get(i).getHighestVal();
             }
