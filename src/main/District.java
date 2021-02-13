@@ -88,8 +88,10 @@ public class District {
 
         Incident highest = this.incidents.get(0);
         for (int i=1; i < this.incidents.size(); i++) {
-            if (this.incidents.get(i).getValue() > highest.getValue()) {
-                highest = this.incidents.get(i);
+            if (this.incidents.get(i) != null) {
+                if (this.incidents.get(i).getValue() > highest.getValue()) {
+                    highest = this.incidents.get(i);
+                }
             }
         }
         return highest;
