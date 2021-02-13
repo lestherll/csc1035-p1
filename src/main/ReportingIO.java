@@ -91,11 +91,18 @@ public class ReportingIO {
         System.out.println(reporting.getIncidentWithValGreaterThan(value));
     }
 
+    private void mainMenu () {
+        System.out.println("\n1. Enter District");
+        System.out.println("2. Enter Incident");
+        System.out.println("3. Present Report");
+        System.out.println("4. EXIT");
+    }
+
     public void main() {
         int choice;
 
         while (true) {
-            System.out.println(reporting.getDistricts());   // For debugging and testing only
+            this.mainMenu();
             choice = this.enterNum(1, 4, "Enter choice [1-4]");
             switch (choice) {
                 case 1 -> {
