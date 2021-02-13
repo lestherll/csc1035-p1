@@ -1,11 +1,13 @@
 package main;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class ReportingIO {
 
     private final Scanner scanner = new Scanner(System.in);
     private final Reporting reporting = new Reporting();
+    private final DecimalFormat df = new DecimalFormat(".##");
 
     public int enterNum(int min, int max, String message) {
         int number = min;
@@ -13,18 +15,26 @@ public class ReportingIO {
             if ((number > max) || (number < min)) {
                 System.out.println("Outside of range");
             }
-            System.out.printf("%s: ", message);
-            while (!this.scanner.hasNextInt()) {
+            System.out.printf("\n%s: ", message);
+            while (!this.scanner.hasNextInt() || !scanner.hasNextDouble()) {
                 String input = this.scanner.next();
                 System.out.printf("%s invalid input, try again: ", input);
             }
             number = this.scanner.nextInt();
         } while ((number > max) || (number < min));
+        this.scanner.nextLine();    // consume rest of the line
         return number;
     }
 
+    public double enterDouble(String message) {
+        System.out.printf("\n%s: ", message);
+        double doubleNum = this.scanner.nextDouble();
+        scanner.nextLine();
+        return doubleNum;
+    }
+
     public String enterStr(String message) {
-        System.out.printf("%s: ", message);
+        System.out.printf("\n%s: ", message);
         return this.scanner.nextLine();
     }
 
@@ -44,7 +54,7 @@ public class ReportingIO {
         String postCode = this.enterStr("Enter Postcode");
         int month = this.enterNum(1, 12, "Enter month number");
         int year = this.enterNum(1950, 2021, "Enter year");
-        double value = this.enterNum(0, (int) Double.POSITIVE_INFINITY, "Enter value stolen");
+        double value = this.enterDouble("Enter value stolen");
 
         return new Incident(postCode, month, year, value);
     }
@@ -62,19 +72,19 @@ public class ReportingIO {
         this.reporting.getDistricts().get(num).addIncident(incident);
     }
 
-    public void presentReport() {
+    public void presentReport(int year, double value) {
         /*
         TODO:
         - add year parameter
         - add amount or value parameter
         */
 
-        System.out.print("\nDistrict with highest average in year: ");
-        System.out.println(reporting.maxAverageValInDistAt(2001));
+        System.out.printf("\nDistrict with highest average in %d: ", year);
+        System.out.println(reporting.maxAverageValInDistAt(year));
         System.out.print("Incident with greatest value stolen: ");
         System.out.println(reporting.maxIncidentVal());
-        System.out.print("Incident with value greater than: ");
-        System.out.println(reporting.getIncidentWithValGreaterThan(100));
+        System.out.printf("Incident with value greater than %s: ", df.format(value));
+        System.out.println(reporting.getIncidentWithValGreaterThan(value));
     }
 
     public void main() {
@@ -106,7 +116,7 @@ public class ReportingIO {
 
                 case 3 -> {
                     System.out.println("REPORT");
-                    this.presentReport();
+                    this.presentReport(2001, 250);
                 }
             }
 
