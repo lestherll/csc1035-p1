@@ -1,6 +1,7 @@
 package main;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Scanner;
 
 public class ReportingIO {
@@ -83,12 +84,30 @@ public class ReportingIO {
     }
 
     public void presentReport(int year, double value) {
+        District maxAverage = reporting.maxAverageValInDistAt(year);
+        Incident maxIncidentVal = reporting.maxIncidentVal();
+        List<Incident> incidents = reporting.getIncidentWithValGreaterThan(value);
+
         System.out.printf("\nDistrict with highest average in %d: ", year);
-        System.out.println(reporting.maxAverageValInDistAt(year));
+        if (maxAverage != null) {
+            System.out.println(maxAverage.getName() + " with £" + maxAverage.getAverageValAt(year));
+        } else {
+            System.out.println("None");
+        }
+
         System.out.print("Incident with greatest value stolen: ");
-        System.out.println(reporting.maxIncidentVal());
+        if (maxIncidentVal != null) {
+            System.out.println(maxIncidentVal);
+        } else {
+            System.out.println("None");
+        }
+
         System.out.printf("Incident with value greater than %s: ", df.format(value));
-        System.out.println(reporting.getIncidentWithValGreaterThan(value));
+        if (incidents.size() != 0) {
+            System.out.println(incidents);
+        } else {
+            System.out.println("None");
+        }
     }
 
     private void mainMenu () {
@@ -100,7 +119,7 @@ public class ReportingIO {
 
     public void main() {
         int choice;
-
+        System.out.println("WELCOME TO CRIME REPORT TRACKER!!!");
         while (true) {
             this.mainMenu();
             choice = this.enterNum(1, 4, "Enter choice [1-4]");
