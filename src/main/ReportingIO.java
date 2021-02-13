@@ -10,18 +10,20 @@ public class ReportingIO {
     private final DecimalFormat df = new DecimalFormat(".##");
 
     public int enterNum(int min, int max, String message) {
-        int number = min;
-        do {
-            if ((number > max) || (number < min)) {
-                System.out.println("Outside of range");
-            }
+        int number;
+        while (true){
             System.out.printf("\n%s: ", message);
-            while (!this.scanner.hasNextInt() || !scanner.hasNextDouble()) {
-                String input = this.scanner.next();
-                System.out.printf("%s invalid input, try again: ", input);
+            try {
+                number = Integer.parseInt(this.scanner.next());
+                if ((number <= max) && (number >= min)) {
+                    break;
+                }
+                System.out.printf("%s Outside of range\n", number);
             }
-            number = this.scanner.nextInt();
-        } while ((number > max) || (number < min));
+            catch (NumberFormatException ignore) {
+                System.out.println("Invalid input");
+            }
+        }
         this.scanner.nextLine();    // consume rest of the line
         return number;
     }
