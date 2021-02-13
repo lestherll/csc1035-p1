@@ -27,10 +27,18 @@ public class ReportingIO {
     }
 
     public double enterDouble(String message) {
-        System.out.printf("\n%s: ", message);
-        double doubleNum = this.scanner.nextDouble();
-        scanner.nextLine();
-        return doubleNum;
+        double number;
+
+        while (true) {
+            System.out.printf("\n%s: ", message);
+            try {
+                number = Double.parseDouble(this.scanner.next());
+                break;
+            } catch (NumberFormatException ignore) {
+                System.out.println("Invalid input");
+            }
+        }
+        return number;
     }
 
     public String enterStr(String message) {
@@ -73,12 +81,6 @@ public class ReportingIO {
     }
 
     public void presentReport(int year, double value) {
-        /*
-        TODO:
-        - add year parameter
-        - add amount or value parameter
-        */
-
         System.out.printf("\nDistrict with highest average in %d: ", year);
         System.out.println(reporting.maxAverageValInDistAt(year));
         System.out.print("Incident with greatest value stolen: ");
