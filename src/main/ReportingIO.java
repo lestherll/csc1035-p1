@@ -146,7 +146,14 @@ public class ReportingIO {
 
                 case 3 -> {
                     System.out.println("REPORT");
-                    this.presentReport(2001, 250);
+                    if (this.reporting.getDistricts().size() != 0) {
+                        int year = this.enterNum(1900, 2001, "Enter Year");
+                        double value = this.enterDouble("Enter value higher than");
+                        this.presentReport(year, value);
+                    }
+                    else {
+                        System.out.println("There are no incidents");
+                    }
                 }
             }
 
