@@ -4,12 +4,27 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * I/O class. This class enables the main user interface for the whole
+ * program such that the user can interact with the program. This class
+ * allows the use to add new Districts and Incidents or even generate
+ * reports for all of the details that had been entered during the
+ * runtime.
+ */
 public class ReportingIO {
 
     private final Scanner scanner = new Scanner(System.in);
     private final Reporting reporting = new Reporting();
     private final DecimalFormat df = new DecimalFormat(".##");
 
+    /**
+     * This allows the user to enter integer inputs based on the minimum
+     * and maximum arguments that have been passed by the user
+     * @param min this depicts the minimum integer input
+     * @param max this depicts the maximum integer input
+     * @param message the message shown when the program asks for input
+     * @return the valid input by the user
+     */
     public int enterNum(int min, int max, String message) {
         int number;
         while (true){
@@ -29,6 +44,12 @@ public class ReportingIO {
         return number;
     }
 
+    /**
+     * A basic double input for the user
+     * @param message argument that the user must pass to be
+     *                displayed when the program asks for input
+     * @return validated input that the user will enter
+     */
     public double enterDouble(String message) {
         double number;
 
@@ -44,16 +65,31 @@ public class ReportingIO {
         return number;
     }
 
+    /**
+     * Allows the user to input string
+     * @param message the message shown when the program asks for input
+     * @return the input that the user entered in string form
+     */
     public String enterStr(String message) {
         System.out.printf("\n%s: ", message);
         return this.scanner.nextLine();
     }
 
+    /**
+     * Creates a district with the user input as argument
+     * @return the District object with the user input as name
+     */
     public District enterDistrict() {
         String name = this.enterStr("Enter District Name");
         return new District(name);
     }
 
+    /**
+     * Creates a district with the user input as argument
+     * @param incident the incident to be added to the District
+     *                 object when it is instantiated
+     * @return the District object with an Incident object
+     */
     public District enterDistrict(Incident incident) {
         District district = this.enterDistrict();
         district.addIncident(incident);
@@ -61,6 +97,10 @@ public class ReportingIO {
         return district;
     }
 
+    /**
+     * Create an Incident object with the inputs given
+     * @return Incident object
+     */
     public Incident enterIncident() {
         String postCode = this.enterStr("Enter Postcode");
         int month = this.enterNum(1, 12, "Enter month number");
@@ -70,6 +110,9 @@ public class ReportingIO {
         return new Incident(postCode, month, year, value);
     }
 
+    /**
+     * Display all districts that currently exists
+     */
     public void displayDistricts() {
         int max = this.reporting.getDistricts().size();
         System.out.println("\n0. Enter new district");
@@ -78,11 +121,23 @@ public class ReportingIO {
         }
     }
 
+    /**
+     * Add incidents to specified districts (by position)
+     * @param num position of the district
+     * @param incident the Incident object to be added to the District
+     */
     public void addIncidentToDistrict(int num, Incident incident) {
         num = num-1;
         this.reporting.getDistricts().get(num).addIncident(incident);
     }
 
+    /**
+     * Present a comprehensible report to the user
+     * @param year the year that the greatest average of a district by
+     *             incident value is to be presented
+     * @param value the value to be compared to such that the incident
+     *              value is greater than it
+     */
     public void presentReport(int year, double value) {
         District maxAverage = reporting.maxAverageValInDistAt(year);
         Incident maxIncidentVal = reporting.maxIncidentVal();
@@ -117,6 +172,11 @@ public class ReportingIO {
         System.out.println("4. EXIT");
     }
 
+    /**
+     * The main menu loop where the user has to enter their inputs
+     * and interact with the program. This allows them to give details
+     * about the incidents and the Districts.
+     */
     public void main() {
         int choice;
         System.out.println("WELCOME TO CRIME REPORT TRACKER!!!");
@@ -124,11 +184,13 @@ public class ReportingIO {
             this.mainMenu();
             choice = this.enterNum(1, 4, "Enter choice [1-4]");
             switch (choice) {
+                // Enter district
                 case 1 -> {
                     System.out.println("DISTRICT MENU");
                     District newDistrict = this.enterDistrict();
                     this.reporting.addDistrict(newDistrict);
                 }
+                // Enter incident
                 case 2 -> {
                     System.out.println("INCIDENT MENU");
                     Incident newIncident = this.enterIncident();
@@ -143,7 +205,7 @@ public class ReportingIO {
                         this.addIncidentToDistrict(districtNum, newIncident);
                     }
                 }
-
+                // Present report
                 case 3 -> {
                     System.out.println("REPORT");
                     if (this.reporting.getDistricts().size() != 0) {
@@ -156,7 +218,7 @@ public class ReportingIO {
                     }
                 }
             }
-
+            // Exit main menu
             if (choice == 4) {
                 System.out.println("BYE!!!!!!!");
                 break;
