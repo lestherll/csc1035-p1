@@ -25,7 +25,7 @@ public class ReportingIO {
      * @param message the message shown when the program asks for input
      * @return the valid input by the user
      */
-    public int enterNum(int min, int max, String message) {
+    private int enterNum(int min, int max, String message) {
         int number;
         while (true){
             System.out.printf("\n%s: ", message);
@@ -50,7 +50,7 @@ public class ReportingIO {
      *                displayed when the program asks for input
      * @return validated input that the user will enter
      */
-    public double enterDouble(String message) {
+    private double enterDouble(String message) {
         double number;
 
         while (true) {
@@ -70,7 +70,7 @@ public class ReportingIO {
      * @param message the message shown when the program asks for input
      * @return the input that the user entered in string form
      */
-    public String enterStr(String message) {
+    private String enterStr(String message) {
         System.out.printf("\n%s: ", message);
         return this.scanner.nextLine();
     }
@@ -79,7 +79,7 @@ public class ReportingIO {
      * Creates a district with the user input as argument
      * @return the District object with the user input as name
      */
-    public District enterDistrict() {
+    private District enterDistrict() {
         String name = this.enterStr("Enter District Name");
         return new District(name);
     }
@@ -90,7 +90,7 @@ public class ReportingIO {
      *                 object when it is instantiated
      * @return the District object with an Incident object
      */
-    public District enterDistrict(Incident incident) {
+    private District enterDistrict(Incident incident) {
         District district = this.enterDistrict();
         district.addIncident(incident);
 
@@ -101,7 +101,7 @@ public class ReportingIO {
      * Create an Incident object with the inputs given
      * @return Incident object
      */
-    public Incident enterIncident() {
+    private Incident enterIncident() {
         String postCode = this.enterStr("Enter Postcode");
         int month = this.enterNum(1, 12, "Enter month number");
         int year = this.enterNum(1950, 2021, "Enter year");
@@ -113,7 +113,7 @@ public class ReportingIO {
     /**
      * Display all districts that currently exists
      */
-    public void displayDistricts() {
+    private void displayDistricts() {
         int max = this.reporting.getDistricts().size();
         System.out.println("\n0. Enter new district");
         for (int i = 0; i < max; i++) {
@@ -126,7 +126,7 @@ public class ReportingIO {
      * @param num position of the district
      * @param incident the Incident object to be added to the District
      */
-    public void addIncidentToDistrict(int num, Incident incident) {
+    private void addIncidentToDistrict(int num, Incident incident) {
         num = num-1;
         this.reporting.getDistricts().get(num).addIncident(incident);
     }
@@ -138,7 +138,7 @@ public class ReportingIO {
      * @param value the value to be compared to such that the incident
      *              value is greater than it
      */
-    public void presentReport(int year, double value) {
+    private void presentReport(int year, double value) {
         District maxAverage = reporting.maxAverageValInDistAt(year);
         Incident maxIncidentVal = reporting.maxIncidentVal();
         List<Incident> incidents = reporting.getIncidentWithValGreaterThan(value);
