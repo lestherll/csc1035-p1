@@ -98,13 +98,16 @@ public class ReportingIO {
     }
 
     /**
-     * Create an Incident object with the inputs given
+     * Create an Incident object with the inputs given when the
+     * program asked for it. User can only enter 1-12 for year
+     * and only 1950 to 2021 for year. They can change the range
+     * of the year manually if need be.
      * @return Incident object
      */
     private Incident enterIncident() {
         String postCode = this.enterStr("Enter Postcode");
-        int month = this.enterNum(1, 12, "Enter month number");
-        int year = this.enterNum(1950, 2021, "Enter year");
+        int month = this.enterNum(1, 12, "Enter month number [1-12]");
+        int year = this.enterNum(1950, 2021, "Enter year [1950-2021]");
         double value = this.enterDouble("Enter value stolen");
 
         return new Incident(postCode, month, year, value);
@@ -123,8 +126,10 @@ public class ReportingIO {
 
     /**
      * Add incidents to specified districts (by position)
-     * @param num position of the district
+     * @param num position of the district minus 1 i.e. passing 1
+     *            will fetch the value of index 1-1 which is 0
      * @param incident the Incident object to be added to the District
+     *                 at index num-1
      */
     private void addIncidentToDistrict(int num, Incident incident) {
         num = num-1;
@@ -132,7 +137,9 @@ public class ReportingIO {
     }
 
     /**
-     * Present a comprehensible report to the user
+     * Present a comprehensible report to the user. The user must enter
+     * the year they want for the greatest average value at a district
+     * in a year, and value that they want to compare to.
      * @param year the year that the greatest average of a district by
      *             incident value is to be presented
      * @param value the value to be compared to such that the incident
