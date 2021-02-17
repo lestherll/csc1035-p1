@@ -34,7 +34,7 @@ class ReportingTest {
         District district0 = new District("Newcastle");
         District district1 = new District("Durham");
 
-        Incident incident = new Incident("NE1 8KL", 12, 2020, 250.0);
+        Incident incident = new Incident("NE1 8KL", 12, 2020, 253.4);
         Incident incident1 = new Incident("NE2 2GH", 1, 2021, 1020.5);
         Incident incident2 = new Incident("NE3 4YU", 2, 2021, 800.4);
         district0.addIncident(new Incident[] {incident, incident1, incident2});
@@ -47,6 +47,8 @@ class ReportingTest {
         reporting.addDistrict(district0, district1);
 
         assertEquals(district1, reporting.maxAverageValInDistAt(2021));
+        assertNull(reporting.maxAverageValInDistAt(2000));
+        assertEquals(district0, reporting.maxAverageValInDistAt(2020));
     }
 
     @Test
