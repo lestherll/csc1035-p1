@@ -216,7 +216,7 @@ public class ReportingIO {
                 case 3 -> {
                     System.out.println("REPORT");
                     if (this.reporting.getDistricts().size() != 0) {
-                        int year = this.enterNum(1900, 2001, "Enter Year");
+                        int year = this.enterNum(1900, 2021, "Enter Year");
                         double value = this.enterDouble("Enter value higher than");
                         this.presentReport(year, value);
                     }
