@@ -97,7 +97,8 @@ public class District {
     /**
      * Average value of incidents in a given year
      * @param year Year wanted for the average
-     * @return the value of the average
+     * @return the value of the average. 0 is returned if there
+     * are no incidents in the given year
      */
     public double getAverageValAt(int year) {
         if (this.incidents.size() == 0) {
@@ -105,12 +106,19 @@ public class District {
         }
 
         double total = 0;
+        int counter = 0;
         for (Incident incident: this.incidents) {
             if (incident.getYear() == year) {
                 total += incident.getValue();
+                counter++;
             }
         }
-        return total/incidents.size();
+
+        if (counter != 0) {
+            return total/counter;
+        } else {
+            return counter;
+        }
     }
 
     /**
