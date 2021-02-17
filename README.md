@@ -24,7 +24,7 @@ Running the program itself is quite basic.
       - This will exit the program
 
 ### Program Loop
-![img.png](resources/menu_loop.png)
+![img.png](diagrams/menu_loop.png)
 The program has 5 main states: a main menu, enter district, enter incident, present report
 and the end of the program. The flowchart above reflects this behaviour. The graph doesn't
 show the internal progression of sub-states 1 to 3.
@@ -48,7 +48,7 @@ exceeds that value.
 This section discusses how the different classes are linked, how they interact with each other
 and how the whole project itself integrates all of them to form one entity.
 
-![img.png](resources/class_diag.png)
+![img.png](diagrams/class_diag.png)
 The diagram above shows how the classes interact with each other, their main components, and behaviour.
 Assume that all classes have their own appropriate getters and setters. An arrow without annotations
 means that the class being pointed to **has** a class as its field from where the arrow came from. 
