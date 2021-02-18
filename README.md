@@ -9,7 +9,7 @@ Running the program itself is quite basic.
    - `git clone https://nucode.ncl.ac.uk/scomp/student-portfolios/c0026034-portfolio/csc1035/csc1035-proj-1.git`
    - Create project from version control in your IDE
    
-2. Run [Main.java](/src/main/Main.java) whilst making sure that `CrimeReport/` is the root directory
+2. Run [Main.java](/src/main/Main.java) whilst making sure that `CSC1035-proj-1/` is the root directory
 
 ### Using the program
 - When the program is running the user should be welcomed with 4 options
